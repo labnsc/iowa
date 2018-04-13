@@ -44,7 +44,7 @@ const convertTriggers = contents => {
     }
 
     const code = stimulusCode(line);
-    
+
     if (mapper.hasOwnProperty(code)) {
       const newCode = mapper[code].index + mapper[code].count;
       mapper[code].count += 1;
