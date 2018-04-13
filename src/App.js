@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 
+import { isLineWithoutStimulus, stimulusCode, replaceLineWithCode } from './helpers/lineHelpers';
+import convertTriggers from './helpers/convertTriggers';
+import winAndLoss from './helpers/winAndLoss';
 import logo from './logo.svg';
 
 import './App.css';
 
-const stimulusCode = line => line.match(/S\s*(\d+)/)[1];
-
-export const parse = contents => {
+export const parseInThree = contents => {
   let trialCount = 0;
   const lines = contents.split("\n");
   let output = '';
 
   lines.forEach(line => {
-    if (!line.match(/^Mk\d+=S/i)) {
+    if (isLineWithoutStimulus(line)) {
       output += `${line}\n`;
       return;
     }
@@ -35,7 +36,7 @@ export const parse = contents => {
           newCode = code === '333' ? '66' : '55';
       }
 
-      const parsedLine = line.replace(/S\s*\d+/, `S${newCode}`);
+      const parsedLine = replaceLineWithCode(line, newCode);
       output += `${parsedLine}\n`;
     }
     else {
@@ -46,9 +47,12 @@ export const parse = contents => {
   return output;
 };
 
+export const parseOnSteroids = contents =>
+  parseInThree(winAndLoss(convertTriggers(contents)));
+
 const downloadZip = zip =>
   zip.generateAsync({ type: "blob" })
-    .then(content => FileSaver.saveAs(content, "iowa-in-three.zip"));
+    .then(content => FileSaver.saveAs(content, "iowa-parsed.zip"));
 
 class App extends Component {
   handleFiles = event => {
@@ -59,7 +63,7 @@ class App extends Component {
     filesArray.forEach(file => {
       const reader = new FileReader();
       reader.onload = () => {
-        const parsedContents = parse(reader.result);
+        const parsedContents = parseOnSteroids(reader.result);
         zip.file(file.name, parsedContents);
         processed++;
 
@@ -78,7 +82,7 @@ class App extends Component {
         </header>
 
         <h1>IOWA</h1>
-        <h3>IOWA in 3</h3>
+        <h3>IOWA parsed</h3>
         <p className="App-intro">
           Choose the <code>.vmrk</code> files you wish to convert
         </p>

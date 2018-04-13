@@ -53,7 +53,7 @@ const LOSSES = [
   7019,
   7028,
   7034,
-]
+];
 
 const POST_LOSS_CODE = '222';
 const POST_LOSSES = [
