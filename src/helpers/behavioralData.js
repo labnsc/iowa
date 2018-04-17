@@ -75,7 +75,8 @@ const behavioralData = contents => {
   let numD = 0;
 
   lines.forEach(line => {
-    const card = line.split(",")[1];
+    const rawCard = line.split(",")[1];
+    const card = rawCard ? rawCard.trim() : rawCard;
     switch (card) {
       case "A":
         balance += A_OR_B_WIN;

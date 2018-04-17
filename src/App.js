@@ -5,6 +5,8 @@ import FileSaver from 'file-saver';
 import { isLineWithoutStimulus, stimulusCode, replaceLineWithCode } from './helpers/lineHelpers';
 import convertTriggers from './helpers/convertTriggers';
 import winAndLoss from './helpers/winAndLoss';
+import behavioralData from './helpers/behavioralData';
+import { getSubjectNumber } from './helpers/fileHelpers';
 import logo from './logo.svg';
 
 import './App.css';
@@ -73,6 +75,37 @@ class App extends Component {
     });
   };
 
+  handleBehaviorFiles = event => {
+    const filesArray = Array.from(event.target.files);
+    let processed = 0;
+    let content = "Subject, Balance, Card-A, Card-B, Card-C, Card-D\n";
+
+    filesArray.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const subjectNumber = getSubjectNumber(file.name);
+        const data = behavioralData(reader.result);
+        content += [
+          subjectNumber,
+          data.balance,
+          data.numA,
+          data.numB,
+          data.numC,
+          data.numD,
+        ].join(',');
+        content += "\n";
+
+        processed++;
+
+        if (filesArray.length === processed) {
+          const blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+          FileSaver.saveAs(blob, "behavioralData.csv");
+        }
+      };
+      reader.readAsText(file);
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -92,6 +125,15 @@ class App extends Component {
         </p>
 
         <hr/>
+
+        <h3>IOWA behavior data</h3>
+        <p className="App-intro">
+          Choose the <code>.csv</code> files
+        </p>
+
+        <p>
+          <input type="file" id="input" multiple onChange={this.handleBehaviorFiles} />
+        </p>
       </div>
     );
   }

@@ -4,7 +4,7 @@ describe('behavioralData()', () => {
   it('returns num of cards and balance', () => {
     const contents = [
       "0,A",
-      "1,C",
+      "1,C ",
       "2,C",
       "3,A",
     ].join("\n");
