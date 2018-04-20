@@ -56,11 +56,11 @@ describe('behavioralData()', () => {
         numCPart1: 0,
         numDPart1: 0,
         numAPart2: 0,
-        numBPart2: 100,
+        numBPart2: 50,
         numCPart2: 0,
         numDPart2: 0,
         numAPart3: 0,
-        numBPart3: 150,
+        numBPart3: 50,
         numCPart3: 0,
         numDPart3: 0,
       };

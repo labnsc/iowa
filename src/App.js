@@ -78,7 +78,30 @@ class App extends Component {
   handleBehaviorFiles = event => {
     const filesArray = Array.from(event.target.files);
     let processed = 0;
-    let content = "Subject, Balance, Card-A, Card-B, Card-C, Card-D\n";
+    let content = [
+      'Subject',
+      'Balance',
+      'Balance-Block-1',
+      'Balance-Block-2',
+      'Balance-Block-3',
+      'Card-A',
+      'Card-A-Block-1',
+      'Card-A-Block-2',
+      'Card-A-Block-3',
+      'Card-B',
+      'Card-B-Block-1',
+      'Card-B-Block-2',
+      'Card-B-Block-3',
+      'Card-C',
+      'Card-C-Block-1',
+      'Card-C-Block-2',
+      'Card-C-Block-3',
+      'Card-D',
+      'Card-D-Block-1',
+      'Card-D-Block-2',
+      'Card-D-Block-3',
+    ].join(',');
+    content += "\n";
 
     filesArray.forEach(file => {
       const reader = new FileReader();
@@ -88,10 +111,25 @@ class App extends Component {
         content += [
           subjectNumber,
           data.balance,
+          data.balancePart1,
+          data.balancePart2,
+          data.balancePart3,
           data.numA,
+          data.numAPart1,
+          data.numAPart2,
+          data.numAPart3,
           data.numB,
+          data.numBPart1,
+          data.numBPart2,
+          data.numBPart3,
           data.numC,
+          data.numCPart1,
+          data.numCPart2,
+          data.numCPart3,
           data.numD,
+          data.numDPart1,
+          data.numDPart2,
+          data.numDPart3,
         ].join(',');
         content += "\n";
 

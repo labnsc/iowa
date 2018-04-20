@@ -87,18 +87,18 @@ const computeBalanceAndCardsForPart = (index, data) => {
 
   if (index === 99) {
     data.balancePart2 = data.balance;
-    data.numAPart2 = data.numA;
-    data.numBPart2 = data.numB;
-    data.numCPart2 = data.numC;
-    data.numDPart2 = data.numD;
+    data.numAPart2 = data.numA - data.numAPart1;
+    data.numBPart2 = data.numB - data.numBPart1;
+    data.numCPart2 = data.numC - data.numCPart1;
+    data.numDPart2 = data.numD - data.numDPart1;
   }
 
   if (index === 149) {
     data.balancePart3 = data.balance;
-    data.numAPart3 = data.numA;
-    data.numBPart3 = data.numB;
-    data.numCPart3 = data.numC;
-    data.numDPart3 = data.numD;
+    data.numAPart3 = data.numA - data.numAPart1 - data.numAPart2;
+    data.numBPart3 = data.numB - data.numBPart1 - data.numBPart2;
+    data.numCPart3 = data.numC - data.numCPart1 - data.numCPart2;
+    data.numDPart3 = data.numD - data.numDPart1 - data.numDPart2;
   }
 };
 
