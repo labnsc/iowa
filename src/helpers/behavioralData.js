@@ -76,6 +76,20 @@ const initData = () => ({
   balancePart3: 0,
 });
 
+const computeBalanceForPart = (index, data) => {
+  if (index === 49) {
+    data.balancePart1 = data.balance;
+  }
+
+  if (index === 99) {
+    data.balancePart2 = data.balance;
+  }
+
+  if (index === 149) {
+    data.balancePart3 = data.balance;
+  }
+};
+
 const behavioralData = contents => {
   const data = initData();
   const lines = contents.split("\n");
@@ -84,10 +98,6 @@ const behavioralData = contents => {
     const rawCard = line.split(",")[1];
     const card = rawCard ? rawCard.trim() : rawCard;
 
-    if (index === 50) {
-      data.balancePart1 = data.balance;
-    }
-
     switch (card) {
       case "A":
         data.balance += A_OR_B_WIN;
@@ -95,7 +105,6 @@ const behavioralData = contents => {
         data.numA++;
         break;
       case "B":
-        console.log('hit')
         data.balance += A_OR_B_WIN;
         data.balance -= computeLoss(data.numB, B_LOSSES);
         data.numB++;
@@ -113,6 +122,8 @@ const behavioralData = contents => {
       default:
         break;
     }
+
+    computeBalanceForPart(index, data);
   });
 
   return data;

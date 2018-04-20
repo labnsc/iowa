@@ -26,18 +26,18 @@ describe('behavioralData()', () => {
 
   describe('results per block', () => {
     it('returns balance per block', () => {
-      const contents = Array(51).fill().map((_v,i)=> `${i},B`).join("\n");
+      const contents = Array(150).fill().map((_v,i)=> `${i},B`).join("\n");
 
       const actual = behavioralData(contents);
       const expected = {
         numA: 0,
-        numB: 51,
+        numB: 150,
         numC: 0,
         numD: 0,
-        balance: 2100,
+        balance: 12000,
         balancePart1: 2000,
-        balancePart2: 0,
-        balancePart3: 0,
+        balancePart2: 7000,
+        balancePart3: 12000,
       };
 
       expect(actual).toEqual(expected);
