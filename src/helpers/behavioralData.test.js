@@ -1,5 +1,8 @@
 import behavioralData from './behavioralData';
 
+const createNContents = (n, letter) =>
+  Array(n).fill().map((_v,i)=> `${i},${letter}`).join("\n");
+
 describe('behavioralData()', () => {
   it('returns num of cards and balance', () => {
     const contents = [
@@ -21,12 +24,12 @@ describe('behavioralData()', () => {
       balancePart3: 0,
     };
 
-    expect(actual).toEqual(expected);
+    expect(actual).toEqual(expect.objectContaining(expected));
   });
 
   describe('results per block', () => {
     it('returns balance per block', () => {
-      const contents = Array(150).fill().map((_v,i)=> `${i},B`).join("\n");
+      const contents = createNContents(150, 'B');
 
       const actual = behavioralData(contents);
       const expected = {
@@ -40,7 +43,29 @@ describe('behavioralData()', () => {
         balancePart3: 12000,
       };
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.objectContaining(expected));
+    });
+
+    it('returns cards per block', () => {
+      const contents = createNContents(150, 'B');
+
+      const actual = behavioralData(contents);
+      const expected = {
+        numAPart1: 0,
+        numBPart1: 50,
+        numCPart1: 0,
+        numDPart1: 0,
+        numAPart2: 0,
+        numBPart2: 100,
+        numCPart2: 0,
+        numDPart2: 0,
+        numAPart3: 0,
+        numBPart3: 150,
+        numCPart3: 0,
+        numDPart3: 0,
+      };
+
+      expect(actual).toEqual(expect.objectContaining(expected));
     });
   });
 

@@ -76,17 +76,29 @@ const initData = () => ({
   balancePart3: 0,
 });
 
-const computeBalanceForPart = (index, data) => {
+const computeBalanceAndCardsForPart = (index, data) => {
   if (index === 49) {
     data.balancePart1 = data.balance;
+    data.numAPart1 = data.numA;
+    data.numBPart1 = data.numB;
+    data.numCPart1 = data.numC;
+    data.numDPart1 = data.numD;
   }
 
   if (index === 99) {
     data.balancePart2 = data.balance;
+    data.numAPart2 = data.numA;
+    data.numBPart2 = data.numB;
+    data.numCPart2 = data.numC;
+    data.numDPart2 = data.numD;
   }
 
   if (index === 149) {
     data.balancePart3 = data.balance;
+    data.numAPart3 = data.numA;
+    data.numBPart3 = data.numB;
+    data.numCPart3 = data.numC;
+    data.numDPart3 = data.numD;
   }
 };
 
@@ -123,7 +135,7 @@ const behavioralData = contents => {
         break;
     }
 
-    computeBalanceForPart(index, data);
+    computeBalanceAndCardsForPart(index, data);
   });
 
   return data;
