@@ -16,9 +16,32 @@ describe('behavioralData()', () => {
       numC: 2,
       numD: 0,
       balance: 2300,
+      balancePart1: 0,
+      balancePart2: 0,
+      balancePart3: 0,
     };
 
     expect(actual).toEqual(expected);
+  });
+
+  describe('results per block', () => {
+    it('returns balance per block', () => {
+      const contents = Array(51).fill().map((_v,i)=> `${i},B`).join("\n");
+
+      const actual = behavioralData(contents);
+      const expected = {
+        numA: 0,
+        numB: 51,
+        numC: 0,
+        numD: 0,
+        balance: 2100,
+        balancePart1: 2000,
+        balancePart2: 0,
+        balancePart3: 0,
+      };
+
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('when a loss occurs', () => {
@@ -39,7 +62,7 @@ describe('behavioralData()', () => {
         balance: 2250,
       };
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.objectContaining(expected));
     });
 
     it('returns correct balance for B', () => {
@@ -64,7 +87,7 @@ describe('behavioralData()', () => {
         balance: 1650,
       };
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.objectContaining(expected));
     });
 
     it('returns correct balance for C', () => {
@@ -83,7 +106,7 @@ describe('behavioralData()', () => {
         balance: 2100,
       };
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.objectContaining(expected));
     });
 
     it('returns correct balance for D', () => {
@@ -109,7 +132,7 @@ describe('behavioralData()', () => {
         balance: 2250,
       };
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.objectContaining(expected));
     });
   });
 });

@@ -1,5 +1,4 @@
 const INITIAL_BALANCE = 2000;
-
 const A_OR_B_WIN = 100;
 const C_OR_D_WIN = 50;
 
@@ -66,50 +65,57 @@ const D_LOSSES = {
 const computeLoss = (numCard, losses) =>
   losses.hasOwnProperty(numCard) ? losses[numCard] : 0;
 
-const behavioralData = contents => {
-  const lines = contents.split("\n");
-  let balance = INITIAL_BALANCE;
-  let numA = 0;
-  let numB = 0;
-  let numC = 0;
-  let numD = 0;
+const initData = () => ({
+  numA: 0,
+  numB: 0,
+  numC: 0,
+  numD: 0,
+  balance: INITIAL_BALANCE,
+  balancePart1: 0,
+  balancePart2: 0,
+  balancePart3: 0,
+});
 
-  lines.forEach(line => {
+const behavioralData = contents => {
+  const data = initData();
+  const lines = contents.split("\n");
+
+  lines.forEach((line, index) => {
     const rawCard = line.split(",")[1];
     const card = rawCard ? rawCard.trim() : rawCard;
+
+    if (index === 50) {
+      data.balancePart1 = data.balance;
+    }
+
     switch (card) {
       case "A":
-        balance += A_OR_B_WIN;
-        balance -= computeLoss(numA, A_LOSSES);
-        numA++;
+        data.balance += A_OR_B_WIN;
+        data.balance -= computeLoss(data.numA, A_LOSSES);
+        data.numA++;
         break;
       case "B":
-        balance += A_OR_B_WIN;
-        balance -= computeLoss(numB, B_LOSSES);
-        numB++;
+        console.log('hit')
+        data.balance += A_OR_B_WIN;
+        data.balance -= computeLoss(data.numB, B_LOSSES);
+        data.numB++;
         break;
       case "C":
-        balance += C_OR_D_WIN;
-        balance -= computeLoss(numC, C_LOSSES);
-        numC++;
+        data.balance += C_OR_D_WIN;
+        data.balance -= computeLoss(data.numC, C_LOSSES);
+        data.numC++;
         break;
       case "D":
-        balance += C_OR_D_WIN;
-        balance -= computeLoss(numD, D_LOSSES);
-        numD++;
+        data.balance += C_OR_D_WIN;
+        data.balance -= computeLoss(data.numD, D_LOSSES);
+        data.numD++;
         break;
       default:
         break;
     }
   });
 
-  return {
-    numA,
-    numB,
-    numC,
-    numD,
-    balance,
-  };
+  return data;
 };
 
 export default behavioralData;
