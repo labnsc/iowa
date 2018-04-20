@@ -34,4 +34,18 @@ describe('convertTriggers()', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('changes S145 for S8000', () => {
+    const contents = [
+      "Mk4=Stimulus,S145,14565,1,0",
+    ].join("\n");
+
+    const actual = convertTriggers(contents);
+    const expected = [
+      "Mk4=Stimulus,S8000,14565,1,0",
+      "",
+    ].join("\n");
+
+    expect(actual).toEqual(expected);
+  });
 });
