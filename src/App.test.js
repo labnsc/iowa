@@ -15,7 +15,8 @@ describe('parseOnSteroids()', () => {
       "Mk1=Stimulus,S111,14565,1,0",
       "Mk2=Stimulus,S111,14565,1,0",
       "Mk3=Stimulus,S111,14565,1,0",
-      "Mk4=Stimulus,S123456,14565,1,0",
+      "Mk4=Stimulus,S134,57125,1,0",
+      "Mk5=Stimulus,S123456,14565,1,0",
     ].join("\n");
 
     const actual = parseOnSteroids(contents);
@@ -24,7 +25,8 @@ describe('parseOnSteroids()', () => {
       "Mk1=Stimulus,S22,14565,1,0", // S22 win code for the first 50 trials
       "Mk2=Stimulus,S22,14565,1,0",
       "Mk3=Stimulus,S11,14565,1,0", // S11 loss code for the first 50 trials
-      "Mk4=Stimulus,S22,14565,1,0",
+      "Mk4=Stimulus,S444,57125,1,0",
+      "Mk5=Stimulus,S22,14565,1,0",
       "",
       "",
       "",

@@ -23,6 +23,7 @@ const initMapper = () => ({
   },
   '134': {
     index: 6000,
+    count: 0,
   },
   '144': {
     index: 7000,
