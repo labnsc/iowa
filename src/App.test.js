@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App, { parseInThree, parseOnSteroids } from './App';
+import App, { parseOnSteroids } from './App';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -10,6 +10,8 @@ it('renders without crashing', () => {
 
 describe('parseOnSteroids()', () => {
   it('uses all of 3 parsers for getting data ready for Brain Vision', () => {
+    const WIN_CODE_FIRST_50 = 'S2222';
+    const LOSS_CODE_FIRST_50 = 'S1111';
     const contents = [
       "Brain Vision",
       "Mk1=Stimulus,S111,14565,1,0",
@@ -22,11 +24,11 @@ describe('parseOnSteroids()', () => {
     const actual = parseOnSteroids(contents);
     const expected = [
       "Brain Vision",
-      "Mk1=Stimulus,S22,14565,1,0", // S22 win code for the first 50 trials
-      "Mk2=Stimulus,S22,14565,1,0",
-      "Mk3=Stimulus,S11,14565,1,0", // S11 loss code for the first 50 trials
+      `Mk1=Stimulus,${WIN_CODE_FIRST_50},14565,1,0`,
+      `Mk2=Stimulus,${WIN_CODE_FIRST_50},14565,1,0`,
+      `Mk3=Stimulus,${LOSS_CODE_FIRST_50},14565,1,0`,
       "Mk4=Stimulus,S444,57125,1,0",
-      "Mk5=Stimulus,S22,14565,1,0",
+      `Mk5=Stimulus,${WIN_CODE_FIRST_50},14565,1,0`,
       "",
       "",
       "",
@@ -34,28 +36,4 @@ describe('parseOnSteroids()', () => {
 
     expect(actual).toEqual(expected);
   })
-});
-
-describe('parseInThree()', () => {
-  it('changes S333 for S22', () => {
-    const contents = [
-      "Brain Vision",
-      "Mk2=Stimulus,S  5,13723,1,0",
-      "Mk3=Stimulus,S  1,13724,1,0",
-      "Mk4=Stimulus,S 11,14565,1,0",
-      "Mk5=Stimulus,S333,15323,1,0",
-    ].join("\n");
-
-    const actual = parseInThree(contents);
-    const expected = [
-      "Brain Vision",
-      "Mk2=Stimulus,S  5,13723,1,0",
-      "Mk3=Stimulus,S  1,13724,1,0",
-      "Mk4=Stimulus,S 11,14565,1,0",
-      "Mk5=Stimulus,S22,15323,1,0",
-      "",
-    ].join("\n");
-
-    expect(actual).toEqual(expected);
-  });
 });
