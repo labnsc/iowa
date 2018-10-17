@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash/fp';
 
 import parseInThree from './parseInThree';
 
@@ -23,5 +24,21 @@ describe('parseInThree()', () => {
     ].join("\n");
 
     expect(actual).toEqual(expected);
+  });
+
+  describe('when trialCount is more than 100', () => {
+    it('changes S333 for S6666 for trial 100', () => {
+      const contents = Array.from(Array(101).keys(), n =>
+        `Mk${n}=Stimulus,S333,15323,1,0`
+      ).join("\n");
+
+      const actual = _.takeRight(2, parseInThree(contents).split('\n'));
+      const expected = [
+        "Mk100=Stimulus,S6666,15323,1,0",
+        "",
+      ]
+
+      expect(actual).toEqual(expected);
+    });
   });
 });
