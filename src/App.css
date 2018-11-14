@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.instructions {
+  background-color: lightgrey;
+  width: 500px;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

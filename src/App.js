@@ -118,25 +118,27 @@ class App extends Component {
         <h3>IOWA parsed</h3>
 
         <p>This use multiple steps to convert your files:</p>
-        <p>
-          1 - S122, S111, S134, S145 will be erased
-        </p>
-        <p>
-          2 - Changes:
-          S 23 --> S122, S112 --> S111, S134 --> S133, S145 --> S144
-        </p>
-        <p>
-          3 - S111, S133 & S144 will have -2000 ms
-        </p>
-        <p>
-          4 - ConvertTriggers
-        </p>
-        <p>
-          5 - WinAndLoss
-        </p>
-        <p>
-          6 - ParseInThree
-        </p>
+        <div className="instructions">
+          <p>
+            1 - S122, S111, S134, S145 will be erased
+          </p>
+          <p>
+            2 - Changes:
+            S 23 --> S122, S112 --> S111, S134 --> S133, S145 --> S144
+          </p>
+          <p>
+            3 - S111, S133 & S144 will have -2000 ms
+          </p>
+          <p>
+            4 - ConvertTriggers
+          </p>
+          <p>
+            5 - WinAndLoss
+          </p>
+          <p>
+            6 - ParseInThree
+          </p>
+        </div>
 
         <p className="App-intro">
           Choose the <code>.vmrk</code> files you wish to convert
