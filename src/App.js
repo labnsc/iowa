@@ -3,6 +3,7 @@ import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 
 import convertTriggers from './helpers/convertTriggers';
+import sanitizeTriggers from './helpers/sanitizeTriggers';
 import winAndLoss from './helpers/winAndLoss';
 import parseInThree from './helpers/parseInThree';
 import behavioralData from './helpers/behavioralData';
@@ -12,7 +13,7 @@ import logo from './logo.svg';
 import './App.css';
 
 export const parseOnSteroids = contents =>
-  parseInThree(winAndLoss(convertTriggers(contents)));
+  parseInThree(winAndLoss(convertTriggers(sanitizeTriggers(contents))));
 
 const downloadZip = zip =>
   zip.generateAsync({ type: "blob" })
@@ -120,7 +121,7 @@ class App extends Component {
         <p>This use multiple steps to convert your files:</p>
         <div className="instructions">
           <p>
-            1 - S122, S111, S134, S145 will be erased
+            1 - S122, S111, S133, S144 will be erased
           </p>
           <p>
             2 - Changes:
