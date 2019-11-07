@@ -6,6 +6,7 @@ import convertTriggers from './helpers/convertTriggers';
 import sanitizeTriggers from './helpers/sanitizeTriggers';
 import winAndLoss from './helpers/winAndLoss';
 import parseInThree from './helpers/parseInThree';
+import parseInFive from './helpers/parseInFive';
 import behavioralData from './helpers/behavioralData';
 import { getSubjectNumber } from './helpers/fileHelpers';
 import logo from './logo.svg';
@@ -15,12 +16,15 @@ import './App.css';
 export const parseOnSteroids = contents =>
   parseInThree(winAndLoss(convertTriggers(sanitizeTriggers(contents))));
 
+export const parseOnSteroidsV2 = contents =>
+  parseInFive(winAndLoss(convertTriggers(sanitizeTriggers(contents))));
+
 const downloadZip = zip =>
   zip.generateAsync({ type: "blob" })
     .then(content => FileSaver.saveAs(content, "iowa-parsed.zip"));
 
 class App extends Component {
-  handleFiles = event => {
+  handleFiles = parser => event => {
     const zip = new JSZip();
     const filesArray = Array.from(event.target.files);
     let processed = 0;
@@ -28,7 +32,7 @@ class App extends Component {
     filesArray.forEach(file => {
       const reader = new FileReader();
       reader.onload = () => {
-        const parsedContents = parseOnSteroids(reader.result);
+        const parsedContents = parser(reader.result);
         zip.file(file.name, parsedContents);
         processed++;
 
@@ -116,7 +120,7 @@ class App extends Component {
         </header>
 
         <h1>IOWA</h1>
-        <h3>IOWA parsed</h3>
+        <h3>IOWA parsed v1</h3>
 
         <p>This use multiple steps to convert your files:</p>
         <div className="instructions">
@@ -146,7 +150,21 @@ class App extends Component {
         </p>
 
         <p>
-          <input type="file" id="input" multiple onChange={this.handleFiles} />
+          <input type="file" id="input" multiple onChange={this.handleFiles(parseOnSteroids)} />
+        </p>
+
+        <hr/>
+
+        <h3>IOWA parsed v2</h3>
+
+        <p>Same as v1 but in last step will parse in 5 the first 100</p>
+
+        <p className="App-intro">
+          Choose the <code>.vmrk</code> files you wish to convert
+        </p>
+
+        <p>
+          <input type="file" id="input" multiple onChange={this.handleFiles(parseOnSteroidsV2)} />
         </p>
 
         <hr/>

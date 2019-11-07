@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash/fp';
 
-import parseInThree from './parseInThree';
+import parseInFive from './parseInFive';
 
-describe('parseInThree()', () => {
+describe('parseInFive()', () => {
   it('changes S333 for S2222', () => {
     const contents = [
       "Brain Vision",
@@ -13,7 +13,7 @@ describe('parseInThree()', () => {
       "Mk5=Stimulus,S333,15323,1,0",
     ].join("\n");
 
-    const actual = parseInThree(contents);
+    const actual = parseInFive(contents);
     const expected = [
       "Brain Vision",
       "Mk2=Stimulus,S  5,13723,1,0",
@@ -26,15 +26,15 @@ describe('parseInThree()', () => {
     expect(actual).toEqual(expected);
   });
 
-  describe('when trialCount is more than 100', () => {
-    it('changes S333 for S6666 for trial 100', () => {
-      const contents = Array.from(Array(101).keys(), n =>
+  describe('when trialCount is more than 20', () => {
+    it('changes S333 for S4444 for trial 20', () => {
+      const contents = Array.from(Array(21).keys(), n =>
         `Mk${n}=Stimulus,S333,15323,1,0`
       ).join("\n");
 
-      const actual = _.takeRight(2, parseInThree(contents).split('\n'));
+      const actual = _.takeRight(2, parseInFive(contents).split('\n'));
       const expected = [
-        "Mk100=Stimulus,S6666,15323,1,0",
+        "Mk20=Stimulus,S4444,15323,1,0",
         "",
       ];
 
