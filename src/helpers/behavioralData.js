@@ -74,10 +74,12 @@ const initData = () => ({
   balancePart1: 0,
   balancePart2: 0,
   balancePart3: 0,
+  balancePart4: 0,
+  balancePart5: 0,
 });
 
 const computeBalanceAndCardsForPart = (index, data) => {
-  if (index === 49) {
+  if (index === 19) {
     data.balancePart1 = data.balance;
     data.numAPart1 = data.numA;
     data.numBPart1 = data.numB;
@@ -85,7 +87,7 @@ const computeBalanceAndCardsForPart = (index, data) => {
     data.numDPart1 = data.numD;
   }
 
-  if (index === 99) {
+  if (index === 39) {
     data.balancePart2 = data.balance;
     data.numAPart2 = data.numA - data.numAPart1;
     data.numBPart2 = data.numB - data.numBPart1;
@@ -93,12 +95,28 @@ const computeBalanceAndCardsForPart = (index, data) => {
     data.numDPart2 = data.numD - data.numDPart1;
   }
 
-  if (index === 149) {
+  if (index === 59) {
     data.balancePart3 = data.balance;
     data.numAPart3 = data.numA - data.numAPart1 - data.numAPart2;
     data.numBPart3 = data.numB - data.numBPart1 - data.numBPart2;
     data.numCPart3 = data.numC - data.numCPart1 - data.numCPart2;
     data.numDPart3 = data.numD - data.numDPart1 - data.numDPart2;
+  }
+
+  if (index === 79) {
+    data.balancePart4 = data.balance;
+    data.numAPart4 = data.numA - data.numAPart1 - data.numAPart2 - data.numAPart3;
+    data.numBPart4 = data.numB - data.numBPart1 - data.numBPart2 - data.numBPart3;
+    data.numCPart4 = data.numC - data.numCPart1 - data.numCPart2 - data.numCPart3;
+    data.numDPart4 = data.numD - data.numDPart1 - data.numDPart2 - data.numDPart3;
+  }
+
+  if (index === 99) {
+    data.balancePart5 = data.balance;
+    data.numAPart5 = data.numA - data.numAPart1 - data.numAPart2 - data.numAPart3 - data.numAPart4;
+    data.numBPart5 = data.numB - data.numBPart1 - data.numBPart2 - data.numBPart3 - data.numBPart4;
+    data.numCPart5 = data.numC - data.numCPart1 - data.numCPart2 - data.numCPart3 - data.numCPart4;
+    data.numDPart5 = data.numD - data.numDPart1 - data.numDPart2 - data.numDPart3 - data.numDPart4;
   }
 };
 

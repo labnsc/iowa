@@ -22,6 +22,8 @@ describe('behavioralData()', () => {
       balancePart1: 0,
       balancePart2: 0,
       balancePart3: 0,
+      balancePart4: 0,
+      balancePart5: 0,
     };
 
     expect(actual).toEqual(expect.objectContaining(expected));
@@ -38,9 +40,11 @@ describe('behavioralData()', () => {
         numC: 0,
         numD: 0,
         balance: 12000,
-        balancePart1: 2000,
-        balancePart2: 7000,
-        balancePart3: 12000,
+        balancePart1: 1500,
+        balancePart2: 1000,
+        balancePart3: 3000,
+        balancePart4: 5000,
+        balancePart5: 7000,
       };
 
       expect(actual).toEqual(expect.objectContaining(expected));
@@ -52,17 +56,25 @@ describe('behavioralData()', () => {
       const actual = behavioralData(contents);
       const expected = {
         numAPart1: 0,
-        numBPart1: 50,
+        numBPart1: 20,
         numCPart1: 0,
         numDPart1: 0,
         numAPart2: 0,
-        numBPart2: 50,
+        numBPart2: 20,
         numCPart2: 0,
         numDPart2: 0,
         numAPart3: 0,
-        numBPart3: 50,
+        numBPart3: 20,
         numCPart3: 0,
         numDPart3: 0,
+        numAPart4: 0,
+        numBPart4: 20,
+        numCPart4: 0,
+        numDPart4: 0,
+        numAPart5: 0,
+        numBPart5: 20,
+        numCPart5: 0,
+        numDPart5: 0,
       };
 
       expect(actual).toEqual(expect.objectContaining(expected));
