@@ -4,7 +4,7 @@ import _ from 'lodash/fp';
 import parseInThree from './parseInThree';
 
 describe('parseInThree()', () => {
-  it('changes S333 for S2222', () => {
+  it('changes S333 for S22', () => {
     const contents = [
       "Brain Vision",
       "Mk2=Stimulus,S  5,13723,1,0",
@@ -27,7 +27,7 @@ describe('parseInThree()', () => {
   });
 
   describe('when trialCount is more than 100', () => {
-    it('changes S333 for S6666 for trial 100', () => {
+    it('changes S333 for S66 for trial 100', () => {
       const contents = Array.from(Array(101).keys(), n =>
         `Mk${n}=Stimulus,S333,15323,1,0`
       ).join("\n");
