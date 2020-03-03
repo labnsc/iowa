@@ -6,7 +6,6 @@ import convertTriggers from './helpers/convertTriggers';
 import sanitizeTriggers from './helpers/sanitizeTriggers';
 import winAndLoss from './helpers/winAndLoss';
 import parseInThree from './helpers/parseInThree';
-import parseInFive from './helpers/parseInFive';
 import behavioralData from './helpers/behavioralData';
 import { getSubjectNumber } from './helpers/fileHelpers';
 import logo from './logo.svg';
@@ -15,9 +14,6 @@ import './App.css';
 
 export const parseOnSteroids = contents =>
   parseInThree(winAndLoss(convertTriggers(sanitizeTriggers(contents))));
-
-export const parseOnSteroidsV2 = contents =>
-  parseInFive(winAndLoss(convertTriggers(sanitizeTriggers(contents))));
 
 const downloadZip = zip =>
   zip.generateAsync({ type: "blob" })
@@ -151,20 +147,6 @@ class App extends Component {
 
         <p>
           <input type="file" id="input" multiple onChange={this.handleFiles(parseOnSteroids)} />
-        </p>
-
-        <hr/>
-
-        <h3>IOWA parsed v2</h3>
-
-        <p>Same as v1 but in last step will parse in 5 the first 100</p>
-
-        <p className="App-intro">
-          Choose the <code>.vmrk</code> files you wish to convert
-        </p>
-
-        <p>
-          <input type="file" id="input" multiple onChange={this.handleFiles(parseOnSteroidsV2)} />
         </p>
 
         <hr/>
