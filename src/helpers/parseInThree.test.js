@@ -19,7 +19,7 @@ describe('parseInThree()', () => {
       "Mk2=Stimulus,S  5,13723,1,0",
       "Mk3=Stimulus,S  1,13724,1,0",
       "Mk4=Stimulus,S 11,14565,1,0",
-      "Mk5=Stimulus,S2222,15323,1,0",
+      "Mk5=Stimulus,S22,15323,1,0",
       "",
     ].join("\n");
 
@@ -34,7 +34,7 @@ describe('parseInThree()', () => {
 
       const actual = _.takeRight(2, parseInThree(contents).split('\n'));
       const expected = [
-        "Mk100=Stimulus,S6666,15323,1,0",
+        "Mk100=Stimulus,S66,15323,1,0",
         "",
       ];
 
