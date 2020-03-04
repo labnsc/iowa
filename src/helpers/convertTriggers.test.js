@@ -1,11 +1,11 @@
 import convertTriggers from './convertTriggers';
 
 describe('convertTriggers()', () => {
-  it('changes S111 for S1000', () => {
+  it('changes S66 for S1000', () => {
     const contents = [
       "Brain Vision",
       "Mk4=Stimulus,S12345,14565,1,0",
-      "Mk4=Stimulus,S111,14565,1,0",
+      "Mk4=Stimulus,S66,14565,1,0",
     ].join("\n");
 
     const actual = convertTriggers(contents);

@@ -18,13 +18,13 @@ const parseInThree = contents => {
 
       switch(true) {
         case trialCount <= 50:
-          newCode = code === '333' ? '22' : '11';
+          newCode = code === '333' ? '62' : '61';
           break;
         case trialCount <= 100:
-          newCode = code === '333' ? '44' : '33';
+          newCode = code === '333' ? '72' : '71';
           break;
         default:
-          newCode = code === '333' ? '66' : '55';
+          newCode = code === '333' ? '82' : '81';
       }
 
       const parsedLine = replaceLineWithCode(line, newCode);

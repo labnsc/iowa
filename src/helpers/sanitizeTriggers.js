@@ -1,19 +1,16 @@
 import {
   isLineWithoutStimulus,
   stimulusCode,
-  stimulusTime,
   replaceLineWithCode,
-  replaceLineWithTime,
 } from './lineHelpers';
 
-const CODES_TO_DELETE = ['122', '111', '133', '144'];
-const CODES_TO_CHANGE = ['23', '112', '134', '145'];
+const CODES_TO_CHANGE = ['111', '122', '133', '144'];
 
 const CODES_MAP = {
-  '23': '122',
-  '112': '111',
-  '134': '133',
-  '145': '144',
+  '111': '66',
+  '122': '77',
+  '133': '88',
+  '144': '99',
 };
 
 const sanitizeTriggers = contents => {
@@ -27,23 +24,11 @@ const sanitizeTriggers = contents => {
     }
 
     const code = stimulusCode(line);
-    if (CODES_TO_DELETE.includes(code)) {
-      return;
-    }
-
     if (CODES_TO_CHANGE.includes(code)) {
       const changedLine = replaceLineWithCode(line, CODES_MAP[code]);
-      if (code === '23') {
-        output += `${changedLine}\n`;
-        return;
-      }
-
-      const time = stimulusTime(line) - 2000;
-      const finalLine = replaceLineWithTime(changedLine, time);
-      output += `${finalLine}\n`;
+      output += `${changedLine}\n`;
       return;
     }
-
 
     output += `${line}\n`;
   });

@@ -1,7 +1,7 @@
 import { isLineWithoutStimulus, stimulusCode, replaceLineWithCode } from './lineHelpers';
 
 const initMapper = () => ({
-  '111': {
+  '66': {
     index: 1000,
     count: 0
   },
@@ -9,7 +9,7 @@ const initMapper = () => ({
     index: 2000,
     count: 0
   },
-  '122': {
+  '77': {
     index: 3000,
     count: 0
   },
@@ -17,7 +17,7 @@ const initMapper = () => ({
     index: 4000,
     count: 0
   },
-  '133': {
+  '88': {
     index: 5000,
     count: 0
   },
@@ -25,7 +25,7 @@ const initMapper = () => ({
     index: 6000,
     count: 0,
   },
-  '144': {
+  '99': {
     index: 7000,
     count: 0
   },
